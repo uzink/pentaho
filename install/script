@@ -9,6 +9,34 @@ sudo apt-get install ssh
 sudo apt-get install mysql-workbench
 
 
+
+
+#install Pentaho Kettel
+
+#download & unzip
+
+#create folder and allow chmod
+
+sudo chmod +x /home/pentaho/pentaho/data-integration/*.sh
+
+#add kettle to path 
+#sudo gedit /etc/environment
+export PATH=$PATH:/home/pentaho/pentaho/data-integration
+
+echo $PATH
+
+#Download from internet & install MySQL java connector 
+#unzip and place folder in 
+
+/home/pentaho/pentaho/data-integration/libext/JDBC
+
+#Create a Pentaho account in MySQL
+
+#open MySQL workbench
+
+#create schema
+
+
 #install MongoDB
 
 #Import the public key used by the package management system.
@@ -33,16 +61,92 @@ sudo service mongod stop
 #Restart MongoDB.
 sudo service mongod restart
 
-#install Pentaho Kettel
+#Install the Automation Agent with a deb Package
 
-#download & unzip
+curl -OL https://mms.mongodb.com/download/agent/automation/mongodb-mms-automation-agent-manager_latest_amd64.deb
 
-#create folder and allow chmod
+#Install the Automation Agent Package.
 
-sudo chmod +x /home/pentaho/pentaho/data-integration/*.sh
+sudo dpkg -i mongodb-mms-automation-agent-manager_latest_amd64.deb
 
-#add kettle to path
-export PATH=$PATH:/home/pentaho/pentaho/data-integration
+#Edit the automation-agent.config file.
 
-sudo gedit /etc/environment
+sudo gedit /etc/mongodb-mms/automation-agent.config
+
+#For mmsGroupId, enter your GroupID as the value. For mmsApiKey, enter your API key.
+
+mmsGroupId=<Group ID>
+mmsApiKey=<API Key>
+
+#Prepare a directory in which to store your MongoDB data.
+#The directory must be owned by the mongodb user. For example, use a set of commands similar to the following:
+
+sudo mkdir /data
+sudo chown mongodb:mongodb /data
+
+#Start the Automation Agent.
+#Issue the following command:
+
+sudo start mongodb-mms-automation-agent
+
+#install robomongo
+
+curl -OL http://robomongo.org/files/linux/robomongo-0.8.5-x86_64.deb
+
+sudo dpkg -i robomongo-0.8.5-x86_64.deb
+
+rm robomongo-0.8.5-x86_64.deb
+
+#create a db
+
+db.users.save( {username:"pentaho"} )
+db.users.find()
+
+
+#Create Admin User
+use admin
+
+show collections
+
+db.createUser ({user : "admin" , pwd : "admin" , roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
+
+#in terminal 
+
+sudo gedit /etc/mongodb.conf
+
+line 25 uncomment:  auth = true
+
+service mongodb restart
+
+#test connexion
+mongo localhost/admin -u admin -p admin
+
+#open robo mongo
+
+name : test
+address: localhost 27017
+
+database:testdb
+
+username: user
+password : password
+
+
+
+
+#allow autetication
+
+mongo
+
+use admin
+
+use admin
+db.createUser(
+  {
+    user: "admin",
+    pwd: "admin",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
 
