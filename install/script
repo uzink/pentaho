@@ -149,4 +149,14 @@ db.createUser(
   }
 )
 
+#Unpack the package for your system architecture
+#Install Mongo Management Studio as root
+sudo ./install.sh
+
+#add to path 
+sudo gedit /etc/environment
+
+#Start Mongo Management Studio from the console
+lx-mms
+
 
