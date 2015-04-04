@@ -25,7 +25,6 @@ sudo apt-get update
 
 sudo apt-get install oracle-java6-installer
 sudo apt-get install oracle-java7-installer
-
 sudo apt-get install oracle-java8-installer
 
 [Managing Java (optional)
@@ -54,7 +53,7 @@ sudo update-alternatives --config java
 sudo gedit /etc/environment
 
 #In this file, add the following line (replacing YOUR_PATH by the just copied path):
-JAVA_HOME="YOUR_PATH"
+JAVA_HOME="/usr/lib/jvm/java-8-oracle/jdk1.8.0_40"
 
 #Now reload this file:
 source /etc/environment
@@ -62,11 +61,45 @@ source /etc/environment
 #Test
 echo $JAVA_HOME
 
+##install pentaho Kettle
+download from website
+unzip
+cd ~/Downloads/
+sudo mkdir -p /opt/pentaho
+sudo mv data-integration /opt/pentaho/kettle
+ls /opt/pentaho/kettle
+sudo chmod +x /opt/pentaho/kettle/*.sh
+sudo gedit /etc/environment
+add PATH = /opt/pentaho/kettle
+source /etc/environment
+echo $PATH
+
+#install jdbc drivers for mysql
+go to my sql download connectors J platform independent TAR
+cd ~/Downloads
+ls
+tar -xzf mysql-connector-java-5.1.35.tar.gz
+mv mysql-connector-java-5.1.35/mysql-connector-java-5.1.35-bin.jar /opt/pentaho/kettle/lib
+
+cd /opt/pentaho/kettle
+./spoon.sh
+
+REMOVE BOOLEAN when creating repository database connexion
+
+
+
+
+
+
+
+
+
+
 ##install python
 ##install R
 ##install mongodb
 ##install rstudio
-##install pentaho
+
 
 
 
