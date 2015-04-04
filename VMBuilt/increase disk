@@ -1,0 +1,13 @@
+##increase size of disk
+create a new HD in Virtual Box
+mount ubuntu DVD
+boot with ubuntu live from DVD
+once booted open gparted
+sudo dd if=/dev/sda of=/dev/sdb
+allocate space on gparted new disk
+note the size of the swap partion and delete it together with the extended partition 
+resize the os partition leaving anough space for the swap partition
+recreate swap partion (create as extended pertion click again as extended)
+shut down vm
+empty disk drive
+remove old disk
