@@ -146,11 +146,14 @@ echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.
 #Reload local package database
 sudo apt-get update
 
-#Install the MongoDB packages.¶
+#Install the MongoDB packages.
 sudo apt-get install -y mongodb-org
 
 #start
 sudo service mongod start
+
+#status
+sudo status mongod
 
 #Stop MongoDB
 sudo service mongod stop
