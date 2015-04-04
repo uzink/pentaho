@@ -27,7 +27,7 @@ sudo apt-get install oracle-java6-installer
 sudo apt-get install oracle-java7-installer
 sudo apt-get install oracle-java8-installer
 
-[Managing Java (optional)
+[Managing Java (optional FOR PENTAHO BI SERVER USE JAVA 7 )
 When there are multiple Java installations on your Droplet, the Java version to use as default can be chosen. To do this, execute the following command:
 
 sudo update-alternatives --config java
@@ -53,7 +53,7 @@ sudo update-alternatives --config java
 sudo gedit /etc/environment
 
 #In this file, add the following line (replacing YOUR_PATH by the just copied path):
-JAVA_HOME="/usr/lib/jvm/java-8-oracle/jdk1.8.0_40"
+JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
 
 #Now reload this file:
 source /etc/environment
@@ -86,12 +86,22 @@ cd /opt/pentaho/kettle
 
 REMOVE BOOLEAN when creating repository database connexion
 
+## Install pentaho BI server
 
+wget http://sourceforge.net/projects/pentaho/files/Business%20Intelligence%20Server/5.3/biserver-ce-5.3.0.0-213.zip/download
+unzip download
+rm -r download
+sudo mv biserver-ce /opt/pentaho/biserver-ce
+sudo ln -s /opt/pentaho/biserver-ce-5.3.0.0-213 /opt/pentaho/biserver-ce
 
+#Create pentaho linux user and group
+sudo addgroup ubuntu
+sudo adduser --system --ingroup ubuntu --disabled-login ubuntu
+#Change owner of the files
+sudo chown -R ubuntu:ubuntu /opt/pentaho
 
-
-
-
+#Start the application server
+sudo -u pentaho /opt/pentaho/biserver-ce/start-pentaho.sh
 
 
 
