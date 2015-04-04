@@ -5,9 +5,11 @@ boot with ubuntu live from DVD
 once booted open gparted
 sudo dd if=/dev/sda of=/dev/sdb
 allocate space on gparted new disk
+refresh disk gparted
 note the size of the swap partion and delete it together with the extended partition 
 resize the os partition leaving anough space for the swap partition
-recreate swap partion (create as extended pertion click again as extended)
+recreate swap partion (create as extended pertion click unallocated again as extended file system linux-swap)
+apply all operations
 shut down vm
 empty disk drive
 remove old disk
