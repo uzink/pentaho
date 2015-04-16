@@ -1,0 +1,9 @@
+1. First run command below to active th TUN module:
+sudo /sbin/modprobe tun
+
+2. Install OpenConnect:
+sudo apt-get install openconnect
+3. Connect to VPN, run:
+sudo openconnect yourvpn.example.com
+
+close press Ctrl+Z 
